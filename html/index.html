@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulação macOS</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/script.js" defer></script>
+</head>
+<body>
+    <div class="desktop">
+        <div class="icon" id="calculator-icon">
+            <img src="../Pictures/calculator.avif" alt="Calculadora">
+            <span>Calculadora</span>
+        </div>
+        <div class="icon" id="text-editor-icon">
+            <img src="../Pictures/textedit.avif" alt="Editor de Texto">
+            <span>Editor de Texto</span>
+        </div>
+        <div class="icon" id="browser-icon">
+            <img src="../Pictures/safari.avif" alt="Navegador">
+            <span>Navegador</span>
+        </div>
+    </div>
+    <div class="dock">
+        <div class="dock-icon" id="dock-calculator">
+            <img src="../Pictures/calculator.avif" alt="Calculadora">
+        </div>
+        <div class="dock-icon" id="dock-text-editor">
+            <img src="../Pictures/textedit.avif" alt="Editor de Texto">
+        </div>
+        <div class="dock-icon" id="dock-browser">
+            <img src="../Pictures/safari.avif" alt="Navegador">
+        </div>
+    </div>
+    <div class="window" id="calculator-window">
+        <div class="window-header">
+            Calculadora
+            <button class="close-btn">X</button>
+        </div>
+        <div class="window-content">
+            <!-- Conteúdo da Calculadora -->
+        </div>
+    </div>
+    <div class="window" id="text-editor-window">
+        <div class="window-header">
+            Editor de Texto
+            <button class="close-btn">X</button>
+        </div>
+        <div class="window-content">
+            <textarea></textarea>
+        </div>
+    </div>
+    <div class="window" id="browser-window">
+        <div class="window-header">
+            Navegador
+            <button class="close-btn">X</button>
+        </div>
+        <div class="window-content">
+            <iframe src="https://www.google.com"></iframe>
+        </div>
+    </div>
+</body>
+</html>

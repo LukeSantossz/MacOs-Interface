@@ -1,0 +1,137 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Remove barras de rolagem */
+    font-family: Arial, sans-serif;
+}
+
+.desktop {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 50px);
+    background: url('../Pictures/MacOswallpaper.jpg') no-repeat center center;
+    background-size: cover; /* Garante que a imagem cubra toda a área da tela */
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 10px;
+    box-sizing: border-box; /* Inclui padding no tamanho total */
+}
+
+.icon {
+    width: 100px;
+    height: 120px; /* Ajuste para incluir o texto */
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    box-sizing: border-box; /* Inclui padding no tamanho total */
+}
+
+.icon img {
+    width: 80px; /* Ajuste o tamanho da imagem para ocupar o espaço total */
+    height: 80px; /* Ajuste o tamanho da imagem para ocupar o espaço total */
+    margin-bottom: 5px;
+    border-radius: 10px; /* Adiciona bordas arredondadas */
+}
+
+.icon span {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.dock {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    box-sizing: border-box; /* Inclui padding no tamanho total */
+}
+
+.dock-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    box-sizing: border-box; /* Inclui padding no tamanho total */
+}
+
+.dock-icon img {
+    width: 50px; /* Ajuste o tamanho da imagem para ocupar o espaço total */
+    height: 50px; /* Ajuste o tamanho da imagem para ocupar o espaço total */
+    border-radius: 10px; /* Adiciona bordas arredondadas */
+}
+
+.window {
+    position: absolute;
+    width: 90%; /* Ajusta a largura para caber na tela */
+    height: 80%; /* Ajusta a altura para caber na tela */
+    max-width: 400px; /* Limita a largura máxima */
+    max-height: 300px; /* Limita a altura máxima */
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    z-index: 20;
+    box-sizing: border-box; /* Inclui padding no tamanho total */
+}
+
+.window-header {
+    background: #f0f0f0;
+    padding: 10px;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box; /* Inclui padding no tamanho total */
+}
+
+.close-btn {
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.window-content {
+    flex: 1;
+    padding: 10px;
+    overflow: auto;
+    box-sizing: border-box; /* Inclui padding no tamanho total */
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    resize: none;
+    box-sizing: border-box; /* Inclui padding no tamanho total */
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    box-sizing: border-box; /* Inclui padding no tamanho total */
+}
