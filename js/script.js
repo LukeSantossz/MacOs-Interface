@@ -3,7 +3,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const dockIcons = document.querySelectorAll('.dock-icon');
     const windows = document.querySelectorAll('.window');
     const closeButtons = document.querySelectorAll('.close-btn');
+    
+    const dockContainer = document.querySelector('.dock'); // Target for dropped icons
 
+    // Tornar ícones do dock arrastáveis
+    dockIcons.forEach(icon => {
+    icon.draggable = true;
+  });
+
+    // Lidar com o evento de início de arraste para ícones do dock
+    dockIcons.forEach(icon => {
+        icon.addEventListener('dragstart', (event) => {
+          event.dataTransfer.setData('text/plain', event.target.id);
+        });
+      });
+
+    // Lidar com o evento de soltar no desktop
+
+    document.querySelector('.desktop').addEventListener('drop', (event) => {
+    event.preventDefault();
+    const droppedIconId = event.dataTransfer.getData('text/plain');
+    const droppedIcon = document.getElementById(droppedIconId);
+
+        // Verificar se o ícone foi solto dentro da área do dock (ajustar coordenadas se necessário)
+        const dockRect = dockContainer.getBoundingClientRect();
+    if (event.clientX >= dockRect.left && event.clientX <= dockRect.right &&
+        event.clientY >= dockRect.top && event.clientY <= dockRect.bottom) {
+      // Insert the dropped icon at the end of the dock container
+      dockContainer.appendChild(droppedIcon);
+    }
+  });
+
+    // Lidar com o evento de permitir soltar no desktop (opcional)
+   document.querySelector('.desktop').addEventListener('dragover', (event) => {
+    event.preventDefault();
+  });
+
+    // Função existente para clique em ícones
     icons.forEach(icon => {
         icon.addEventListener('click', () => {
             const windowId = icon.id.replace('-icon', '-window');
@@ -15,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Função existente para clique em ícones do dock
     dockIcons.forEach(icon => {
         icon.addEventListener('click', () => {
             const windowId = icon.id.replace('dock-', '') + '-window';
@@ -26,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Função existente para movimentação das janelas
     windows.forEach(window => {
         const header = window.querySelector('.window-header');
         header.addEventListener('mousedown', (e) => {
@@ -56,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Função existente para fechamento das janelas
     closeButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             const windowElement = e.target.closest('.window');

@@ -2,26 +2,26 @@ body, html {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
-    overflow: hidden; /* Remove barras de rolagem */
+    height: 100%; /* Adjust to 100% */
+    overflow: hidden; /* Remove scrollbars */
     font-family: Arial, sans-serif;
 }
 
 .desktop {
-    position: relative;
     width: 100%;
-    height: calc(100% - 50px);
+    height: 100%; /* Adjust to 100% */
     background: url('../Pictures/MacOswallpaper.jpg') no-repeat center center;
-    background-size: cover; /* Garante que a imagem cubra toda a área da tela */
+    background-size: cover; /* Ensure image covers the entire area */
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     padding: 10px;
-    box-sizing: border-box; /* Inclui padding no tamanho total */
+    box-sizing: border-box; /* Include padding in total size */
 }
 
+
 .icon {
-    width: 100px;
+    width: 90px;
     height: 120px; /* Ajuste para incluir o texto */
     margin: 10px;
     text-align: center;
@@ -33,6 +33,7 @@ body, html {
     align-items: center;
     font-size: 14px;
     box-sizing: border-box; /* Inclui padding no tamanho total */
+    transition: transform 0.2s
 }
 
 .icon img {
@@ -47,17 +48,26 @@ body, html {
     font-size: 12px;
 }
 
+.icon:hover {
+    transform: scale(1.1);
+  }
+
 .dock {
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-    background: rgba(0, 0, 0, 0.8);
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    z-index: 10;
-    box-sizing: border-box; /* Inclui padding no tamanho total */
+    gap: 14px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 12px;
 }
 
 .dock-icon {
@@ -71,11 +81,16 @@ body, html {
     align-items: center;
     font-size: 12px;
     box-sizing: border-box; /* Inclui padding no tamanho total */
+    transition: transform 0.2s
+}
+
+.dock-icon:hover {
+    transform: scale(1.1); /* Aumenta o tamanho do ícone ao passar o mouse */
 }
 
 .dock-icon img {
-    width: 50px; /* Ajuste o tamanho da imagem para ocupar o espaço total */
-    height: 50px; /* Ajuste o tamanho da imagem para ocupar o espaço total */
+    width: 60px; /* Ajuste o tamanho da imagem para ocupar o espaço total */
+    height: 60px; /* Ajuste o tamanho da imagem para ocupar o espaço total */
     border-radius: 10px; /* Adiciona bordas arredondadas */
 }
 
@@ -134,4 +149,5 @@ iframe {
     height: 100%;
     border: none;
     box-sizing: border-box; /* Inclui padding no tamanho total */
+
 }
