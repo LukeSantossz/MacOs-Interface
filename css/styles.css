@@ -26,15 +26,18 @@ body {
 
 /* Container de fundo */
 .background-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../Pictures/MacOswallpaper.jpg'); /* Verifique o caminho da imagem */
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  z-index: -1; /* Coloca o fundo atrás dos outros elementos */
+  z-index: -1;
+  transition: background-image 1s ease-in-out;
+  background-image: url('../Pictures/wallpaper-night.jpg');
+  overflow: hidden; /* Garante que os elementos filhos não ultrapassem o container */
 }
 
 /* Barra de tarefas (Menu Bar) */
@@ -122,6 +125,84 @@ body {
   display: contents;
   font-size: 16px;
   color: #fff;
+}
+
+/* Estilos para a janela modal */
+.modal {
+  position: absolute;
+  width: 80%;
+  max-width: 800px;
+  height: 400px;
+  background-color: #002b36;
+  border: 1px solid #073642;
+  border-radius: 5px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  color: #839496;
+  font-family: "Monaco", monospace;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out, width 0.3s ease-out, height 0.3s ease-out;
+}
+
+.modal-header {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #073642;
+  border-bottom: 1px solid #586e75;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #93a1a1;
+  user-select: none;
+  cursor: move;
+}
+
+.modal.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.modal.closing {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.modal-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.modal-controls span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.modal-close {
+  background-color: #ff5f56;
+}
+
+.modal-minimize {
+  background-color: #ffbd2e;
+}
+
+.modal-maximize {
+  background-color: #27c93f;
+}
+
+.modal-title {
+  font-weight: bold;
+  flex-grow: 1;
+  text-align: center;
+  margin-left: 20px;
 }
 
 /* Dock (Barra de ícones) */
@@ -223,9 +304,32 @@ body {
 }
 
 .dock .dock-container li .ico-bin:hover {
-  margin-left: 10px;
+  transform: scale(1.1);
 }
 
-.dock .dock-container li:hover .name {
-  visibility: visible !important;
+#modals-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
+
+#modals-container .modal {
+  pointer-events: auto;
+}
+
+.modal.maximized {
+  /* Não é necessário definir propriedades específicas aqui */
+}
+
+.modal {
+  /* ... propriedades existentes ... */
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out, width 0.3s ease-out, height 0.3s ease-out;
+}
+
+.modal:not(.dragging) {
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out, width 0.3s ease-out, height 0.3s ease-out, left 0.3s ease-out, top 0.3s ease-out;
+}
+

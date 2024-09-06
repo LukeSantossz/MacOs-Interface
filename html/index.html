@@ -4,20 +4,20 @@
   <!-- Metadados e links para estilos -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="../Pictures/MacLogo-icon.png" type="image/x-icon"> <!-- Adicione esta linha -->
+  <link rel="icon" href="../Pictures/MacLogo-icon.png" type="image/x-icon">
   <title>MacOs Interface</title>
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQI1KGw+BmFZb0tI9dfN2r1T0QNTZJIS<ctrl62>a-user">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQI1KGw+BmFZb0tI9dfN2r1T0QNTZJISctrl62>a-user">
 </head>
 <body>
   <!-- Imagem de fundo -->
   <div class="background-container"></div>
-
+  
   <!-- Barra de tarefas -->
   <div class="menu-bar">
     <div class="left">
       <!-- Logo e itens do menu -->
-      <img src="../Pictures/apple.png" class="apple-logo" alt="Logo da Apple">
+      <img id="toggle-wallpaper" src="../Pictures/apple.png" class="apple-logo" alt="Logo da Apple">
       <span class="menus active">Finder</span>
       <span class="menus">File</span>
       <span class="menus">Edit</span>
@@ -26,7 +26,7 @@
       <span class="menus">Window</span>
       <span class="menus">Help</span>
     </div>
-
+    
     <div class="right">
       <!-- Ícones da barra de tarefas -->
       <div class="menu-ico">
@@ -54,7 +54,10 @@
       <div class="menu-time"></div>
     </div>
   </div>
-
+  
+  <!-- Container para as modais -->
+  <div id="modals-container">
+  </div>
   <!-- Barra de ícones (Dock) -->
   <div class="dock">
     <ul class="dock-container">
@@ -121,7 +124,7 @@
       </li>
     </ul>
   </div>
-
+  
   <!-- Inclusão de script JavaScript -->
   <script src="../js/script.js"></script>
 </body>
