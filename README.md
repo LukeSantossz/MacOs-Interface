@@ -22,10 +22,10 @@ Este projeto é uma interface de usuário inspirada no MacOS, criada utilizando 
    ```bash
    git clone https://github.com/seu-usuario/macOS-interface-clone.git
    cd macOS-interface-clone
-   ```
+
 
 2. **Abra o Arquivo HTML**
-   Abra o arquivo `index.html` no seu navegador preferido.
+   Abra o arquivo index.html no seu navegador preferido.
 
 ## Estrutura do Projeto
 
@@ -37,15 +37,15 @@ Este projeto é uma interface de usuário inspirada no MacOS, criada utilizando 
 
 ### HTML
 
-O arquivo `index.html` define a estrutura da interface, incluindo a barra de tarefas, o dock de aplicativos e os contêineres para janelas modais.
+O arquivo index.html define a estrutura da interface, incluindo a barra de tarefas, o dock de aplicativos e os contêineres para janelas modais.
 
 ### CSS
 
-O arquivo `styles.css` define os estilos para a interface, incluindo a barra de tarefas, o dock de aplicativos, e as janelas modais. Ele também inclui fontes personalizadas e animações para transições suaves.
+O arquivo styles.css define os estilos para a interface, incluindo a barra de tarefas, o dock de aplicativos, e as janelas modais. Ele também inclui fontes personalizadas e animações para transições suaves.
 
 ### JavaScript
 
-O arquivo `script.js` adiciona interatividade à interface. Ele inclui funções para abrir e fechar janelas modais, atualizar o papel de parede com base na hora do dia, e exibir a data e hora atual na barra de tarefas.
+O arquivo script.js adiciona interatividade à interface. Ele inclui funções para abrir e fechar janelas modais, atualizar o papel de parede com base na hora do dia, e exibir a data e hora atual na barra de tarefas.
 
 ## Google Gemini
 
@@ -58,6 +58,28 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull re
 ## Licença
 
 Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## Processo de Criação do Projeto
+
+### Dia 1: Estrutura Inicial
+- Criação do repositório e configuração inicial do projeto.
+- Desenvolvimento da estrutura básica em HTML.
+
+### Dia 2: Estilização
+- Implementação dos estilos principais em CSS.
+- Adição de fontes personalizadas e animações.
+
+### Dia 3: Funcionalidades Interativas
+- Desenvolvimento das funcionalidades interativas em JavaScript.
+- Implementação da barra de tarefas e do dock de aplicativos.
+
+### Dia 4: Janelas Modais
+- Criação e estilização das janelas modais.
+- Adição de funcionalidades para abrir, fechar, mover e redimensionar janelas.
+
+### Dia 5: Papel de Parede Dinâmico e Atualização de Tempo
+- Implementação do papel de parede dinâmico baseado na hora do dia.
+- Adição da funcionalidade de exibição da data e hora atual na barra de tarefas.
 
 ---
 
