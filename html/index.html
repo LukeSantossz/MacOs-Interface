@@ -6,17 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../Pictures/MacLogo-icon.png" type="image/x-icon">
   <title>MacOs Interface</title>
+  <!-- Link para o CSS local -->
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQI1KGw+BmFZb0tI9dfN2r1T0QNTZJISctrl62>a-user">
+  
+  <!-- Link para a biblioteca Font Awesome (usada para ícones) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" 
+        integrity="sha512-MV7K8+y+gLIBoVD59lQI1KGw+BmFZb0tI9dfN2r1T0QNTZJISctrl62R9Cm9kXHl0l+2WdrZtRZc6I3D8SD6sA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
+
 <body>
   <!-- Imagem de fundo -->
   <div class="background-container"></div>
-  
-  <!-- Barra de tarefas -->
+
+  <!-- Barra de tarefas do topo, estilo MacOS -->
   <div class="menu-bar">
     <div class="left">
-      <!-- Logo e itens do menu -->
+      <!-- Logo da Apple e menu da barra superior -->
       <img id="toggle-wallpaper" src="../Pictures/apple.png" class="apple-logo" alt="Logo da Apple">
       <span class="menus active">Finder</span>
       <span class="menus">File</span>
@@ -25,107 +30,107 @@
       <span class="menus">Go</span>
       <span class="menus">Window</span>
       <span class="menus">Help</span>
+      <span class="menus">Lkz &copy; 2024 Todos os direitos reservados.</span>
     </div>
     
     <div class="right">
-      <!-- Ícones da barra de tarefas -->
+      <!-- Ícones da barra de tarefas à direita -->
       <div class="menu-ico">
         <img src="../Pictures/volume-icon.png" alt="Ícone de volume" class="vol">
       </div>
       <div class="menu-ico">
-        <i class="fab fa-bluetooth-b" aria-label="Bluetooth"></i>
+        <img src="../Pictures/bluetooth-icon.png" alt="Bluetooth" class="bluetooth">
       </div>
       <div class="menu-ico">
-        <i class="fas fa-battery-half" aria-label="Bateria"></i>
+        <img src="../Pictures/battery-icon.png" alt="Bateria" class="battery">
       </div>
       <div class="menu-ico">
-        <i class="fas fa-wifi" aria-label="WiFi"></i>
+        <img src="../Pictures/wifi-icon.png" alt="WiFi" class="wifi">
       </div>
       <div class="menu-ico">
-        <i class="fas fa-search" aria-label="Buscar"></i>
+        <img src="../Pictures/search-icon.png" alt="Buscar" class="search">
       </div>
       <div class="menu-ico">
-        <img src="../Pictures/control-center-icon.png" alt="Ícone do centro de controle" class="control-center">
+        <img id="siri-icon" src="../Pictures/siri-icon.png" alt="Ícone da Siri" class="siri">
       </div>
-      <div class="menu-ico">
-        <img src="../Pictures/siri-icon.png" alt="Ícone da Siri" class="siri">
-      </div>
-      <!-- Seção de tempo, caso esteja implementada futuramente -->
+      <!-- Placeholder para a exibição do tempo -->
       <div class="menu-time"></div>
     </div>
   </div>
   
-  <!-- Container para as modais -->
-  <div id="modals-container">
-  </div>
+  <!-- Container para janelas modais -->
+  <div id="modals-container"></div>
+  
   <!-- Barra de ícones (Dock) -->
   <div class="dock">
     <ul class="dock-container">
-      <!-- Cada item na barra de ícones -->
-      <li class="li-1">
+      <!-- Cada item da barra de ícones (Dock) -->
+      <li class="li-ai" data-app="ChatGpt">
+        <div class="name">ChatGpt</div>
+        <img class="ico" src="../Pictures/chatgpt-icon.webp" alt="Ícone da IA">
+      </li>
+      <li class="li-1" data-app="Finder">
         <div class="name">Finder</div>
         <img class="ico" src="../Pictures/finder-icon.avif" alt="Ícone do Finder">
       </li>
-      <li class="li-2">
-        <div class="name">Siri</div>
-        <img class="ico" src="../Pictures/siri-icon.avif" alt="Ícone da Siri">
-      </li>
-      <li class="li-3">
+      <li class="li-3" data-app="Spotify">
         <div class="name">Spotify</div>
         <img class="ico" src="../Pictures/spotify_icon.png" alt="Ícone do Spotify">
       </li>
-      <li class="li-4">
+      <li class="li-4" data-app="Contacts">
         <div class="name">Contacts</div>
         <img class="ico" src="../Pictures/contacts-icon.avif" alt="Ícone de Contatos">
       </li>
-      <li class="li-5">
+      <li class="li-5" data-app="Notes">
         <div class="name">Notes</div>
         <img class="ico" src="../Pictures/notes-icon.avif" alt="Ícone de Notas">
       </li>
-      <li class="li-6">
+      <li class="li-6" data-app="Reminders">
         <div class="name">Reminders</div>
         <img class="ico" src="../Pictures/reminders-icon.avif" alt="Ícone de Lembretes">
       </li>
-      <li class="li-7">
+      <li class="li-7" data-app="Photos">
         <div class="name">Photos</div>
         <img class="ico" src="../Pictures/photos-icon.avif" alt="Ícone de Fotos">
       </li>
-      <li class="li-8">
+      <li class="li-8" data-app="Messages">
         <div class="name">Messages</div>
         <img class="ico" src="../Pictures/messages-icon.avif" alt="Ícone de Mensagens">
       </li>
-      <li class="li-9">
+      <li class="li-9" data-app="FaceTime">
         <div class="name">FaceTime</div>
         <img class="ico" src="../Pictures/facetime-icon.avif" alt="Ícone do FaceTime">
       </li>
-      <li class="li-10">
+      <li class="li-10" data-app="Music">
         <div class="name">Music</div>
         <img class="ico" src="../Pictures/music-icon.avif" alt="Ícone de Música">
       </li>
-      <li class="li-11">
+      <li class="li-11" data-app="Podcasts">
         <div class="name">Podcasts</div>
         <img class="ico" src="../Pictures/podcasts-icon.avif" alt="Ícone de Podcasts">
       </li>
-      <li class="li-12">
+      <li class="li-12" data-app="Calculator">
         <div class="name">Calculator</div>
         <img class="ico" src="/Pictures/calculator.avif" alt="Ícone da Calculadora">
       </li>
-      <li class="li-13">
+      <li class="li-13" data-app="App Store">
         <div class="name">App Store</div>
         <img class="ico" src="../Pictures/app-store-icon.avif" alt="Ícone da App Store">
       </li>
-      <li class="li-14">
+      <li class="li-14" data-app="Safari">
         <div class="name">Safari</div>
         <img class="ico" src="../Pictures/safari.avif" alt="Ícone do Safari">
       </li>
-      <li class="li-bin li-15">
+      <!-- Barra de separação -->
+      <li class="dock-separator"></li>
+      <li class="li-bin li-15" data-app="Bin">
         <div class="name">Bin</div>
         <img class="ico ico-bin" src="../Pictures/trash-bin.png" alt="Ícone da Lixeira">
       </li>
     </ul>
   </div>
   
-  <!-- Inclusão de script JavaScript -->
+  <!-- Inclusão do script JavaScript local -->
   <script src="../js/script.js"></script>
 </body>
 </html>

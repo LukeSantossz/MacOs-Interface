@@ -1,26 +1,28 @@
-// Função para atualizar a barra de ícones ao passar o mouse sobre eles
+// Seleciona todos os elementos com a classe "ico" e armazena em uma variável
 const icons = document.querySelectorAll(".ico");
-const length = icons.length;
+const length = icons.length; // Armazena o número total de ícones
 
 // Adiciona eventos de mouseover e mouseleave a cada ícone
 icons.forEach((item, index) => {
   item.addEventListener("mouseover", (e) => {
-    focus(e.target, index);
+    focus(e.target, index); // Aplica o estilo de foco ao ícone sobre o qual o mouse está
+    e.target.closest('li').querySelector('.name').style.visibility = 'visible'; // Torna o nome do app visível
   });
-  item.addEventListener("mouseleave", () => {
+  item.addEventListener("mouseleave", (e) => {
     // Restaura o estilo original de todos os ícones quando o mouse sai
     icons.forEach((icon) => {
       icon.style.transform = "scale(1) translateY(0px)";
     });
+    e.target.closest('li').querySelector('.name').style.visibility = 'hidden'; // Esconde o nome do app
   });
 });
 
 // Função que aplica o estilo de foco aos ícones
 const focus = (elem, index) => {
-  const previous = index - 1;
-  const previous1 = index - 2;
-  const next = index + 1;
-  const next2 = index + 2;
+  const previous = index - 1; // Ícone anterior
+  const previous1 = index - 2; // Ícone dois anteriores
+  const next = index + 1; // Ícone próximo
+  const next2 = index + 2; // Ícone dois próximos
 
   // Aplica transformação ao ícone atualmente em foco
   elem.style.transform = "scale(1.5) translateY(-10px)";
@@ -73,15 +75,17 @@ setInterval(updateTime, 1000);
 // Chama a função para definir o tempo inicial
 updateTime();
 
-let modalCounter = 0;
+let modalCounter = 0; // Contador para gerar IDs únicos para modais
 
 // Função para criar uma nova modal
 function createModal(title) {
+  console.log(`Criando modal com título: ${title}`);
   const modalsContainer = document.getElementById('modals-container');
-  const modalId = `modal-${modalCounter++}`;
+  const modalId = `modal-${modalCounter++}`; // Gera um ID único para a nova modal
   
+  // HTML da nova modal
   const modalHTML = `
-    <div id="${modalId}" class="modal">
+    <div id="${modalId}" class="modal" data-app="${title}">
       <div class="modal-header">
         <div class="modal-controls">
           <span class="modal-close"></span>
@@ -96,29 +100,40 @@ function createModal(title) {
     </div>
   `;
   
-  modalsContainer.insertAdjacentHTML('beforeend', modalHTML);
-  const modal = document.getElementById(modalId);
-  addModalEvents(modal);
+  modalsContainer.insertAdjacentHTML('beforeend', modalHTML); // Adiciona o HTML da modal ao container
+  const modal = document.getElementById(modalId); // Seleciona a nova modal
+  addModalEvents(modal); // Adiciona eventos à nova modal
   return modal;
 }
 
 // Função para fechar a modal
 function closeModal(modal) {
-  modal.classList.add('closing');
-  modal.classList.remove('show');
-  
+  modal.classList.add('closing'); // Adiciona classe para animação de fechamento
+  modal.classList.remove('show'); // Remove a classe de exibição
+
   // Remove a modal após a conclusão da animação
   modal.addEventListener('transitionend', function handler(e) {
     if (e.propertyName === 'opacity') {
       modal.removeEventListener('transitionend', handler);
       modal.remove();
+      
+      // Atualiza o indicador no dock
+      const appName = Object.keys(openWindows).find(key => openWindows[key] === modal);
+      if (appName) {
+        console.log(`Fechando modal para ${appName}`);
+        delete openWindows[appName];
+        updateDockIndicator(appName, false);
+      } else {
+        console.warn('Não foi possível encontrar o appName para a modal fechada');
+      }
     }
   });
 }
 
 // Função para abrir uma nova modal
 function openModal(title) {
-  const modal = createModal(`~macos/single-div/${title.toLowerCase()}`);
+  console.log(`Abrindo modal para: ${title}`);
+  const modal = createModal(title);
   
   // Posiciona a modal no centro da tela
   const rect = modal.getBoundingClientRect();
@@ -139,59 +154,89 @@ function openModal(title) {
   
   // Adiciona os eventos de arrastar
   addDragEvents(modal);
+  
+  // Atualiza o indicador no dock
+  openWindows[title] = modal;
+  updateDockIndicator(title, true);
+  
+  console.log(`Modal aberta para ${title}, openWindows:`, Object.keys(openWindows));
+  
+  return modal;
 }
 
 // Função para adicionar eventos de arrastar à modal
 function addDragEvents(modal) {
   const header = modal.querySelector('.modal-header');
   let isDragging = false;
-  let startX, startY, startLeft, startTop;
+  let startX, startY;
 
   function dragStart(e) {
+    if (e.button !== 0) return; // Apenas botão esquerdo do mouse
     isDragging = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    startLeft = modal.offsetLeft;
-    startTop = modal.offsetTop;
+    startX = e.clientX - modal.offsetLeft;
+    startY = e.clientY - modal.offsetTop;
     
-    document.addEventListener('mousemove', drag);
+    // Desativa a transição durante o arrasto
+    modal.style.transition = 'none';
+    
+    // Usa requestAnimationFrame para otimizar o desempenho
+    requestAnimationFrame(drag);
+    
+    document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', dragEnd);
+  }
+  
+  function onMouseMove(e) {
+    if (!isDragging) return;
+    requestAnimationFrame(() => drag(e));
   }
   
   function drag(e) {
     if (!isDragging) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    
-    const newLeft = startLeft + dx;
-    const newTop = startTop + dy;
+    let newLeft = e.clientX - startX;
+    let newTop = e.clientY - startY;
+
+    // Limites da tela
+    const minLeft = 0;
+    const minTop = 0;
+    const maxLeft = window.innerWidth - modal.offsetWidth;
+    const maxTop = window.innerHeight - modal.offsetHeight;
+
+    // Ajusta a posição para ficar dentro dos limites
+    newLeft = Math.max(minLeft, Math.min(newLeft, maxLeft));
+    newTop = Math.max(minTop, Math.min(newTop, maxTop));
     
     modal.style.left = `${newLeft}px`;
     modal.style.top = `${newTop}px`;
   }
   
   function dragEnd() {
+    if (!isDragging) return;
     isDragging = false;
-    document.removeEventListener('mousemove', drag);
+    
+    // Reativa a transição após o arrasto
+    modal.style.transition = '';
+    
+    document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', dragEnd);
   }
   
-  header.addEventListener('mousedown', dragStart);
+  header.addEventListener('mousedown', dragStart); // Adiciona evento de início de arrasto ao cabeçalho
 }
 
 // Função para adicionar todos os eventos à modal
 function addModalEvents(modal) {
-  addDragEvents(modal);
+  addDragEvents(modal); // Adiciona eventos de arrastar
 
   // Adiciona evento de clique ao botão de fechar
   const closeButton = modal.querySelector('.modal-close');
   closeButton.addEventListener('click', () => closeModal(modal));
 
-  // Adiciona evento de clique ao botão de maximizar (verde)
+  // Adiciona evento de clique ao botão de maximizar
   const maximizeButton = modal.querySelector('.modal-maximize');
   maximizeButton.addEventListener('click', () => toggleMaximize(modal));
 
-  // Adiciona evento de clique ao botão de minimizar (amarelo)
+  // Adiciona evento de clique ao botão de minimizar
   const minimizeButton = modal.querySelector('.modal-minimize');
   minimizeButton.addEventListener('click', () => toggleMinimize(modal));
 }
@@ -251,18 +296,20 @@ function toggleMinimize(modal) {
 const dockItems = document.querySelectorAll('.dock-container li');
 dockItems.forEach((item) => {
   item.addEventListener('click', () => {
-    openModal(item.querySelector('.name').textContent);
+    openModal(item.querySelector('.name').textContent); // Abre a modal correspondente ao item clicado
   });
 });
 
 let isDaytime = true; // Variável para controlar se é dia ou noite
 let manualOverrideTimer = null; // Timer para restaurar o papel de parede original
 
+// Função para obter o caminho do papel de parede baseado na hora do dia
 function getTimeBasedWallpaper() {
   const hour = new Date().getHours();
   return (hour >= 6 && hour < 18) ? '../Pictures/MacOsWallpaperDay.jpg' : '../Pictures/MacOswallpaper.jpg';
 }
 
+// Função para atualizar o papel de parede
 function updateWallpaper(manual = false) {
   const wallpaperPath = manual ? (isDaytime ? '../Pictures/MacOswallpaper.jpg' : '../Pictures/MacOsWallpaperDay.jpg') : getTimeBasedWallpaper();
 
@@ -327,4 +374,26 @@ document.getElementById('toggle-wallpaper').addEventListener('click', () => upda
 updateTimeBasedWallpaper();
 
 // Atualiza o papel de parede a cada minuto
-setInterval(updateTimeBasedWallpaper, 60000);
+setInterval(updateTimeBasedWallpaper, 60000)
+
+// Objeto para rastrear as janelas abertas
+const openWindows = {};
+
+// Função para atualizar o indicador de abertura no dock
+function updateDockIndicator(appName, isOpen) {
+  console.log(`Atualizando indicador para ${appName}: ${isOpen ? 'aberto' : 'fechado'}`);
+  const dockItem = document.querySelector(`.dock .dock-container li[data-app="${appName}"]`);
+  if (dockItem) {
+    console.log(`Elemento encontrado para ${appName}:`, dockItem);
+    if (isOpen) {
+      dockItem.classList.add('app-open');
+      console.log(`Classe app-open adicionada para ${appName}`);
+    } else {
+      dockItem.classList.remove('app-open');
+      console.log(`Classe app-open removida para ${appName}`);
+    }
+    console.log(`Classes atuais para ${appName}:`, dockItem.classList.toString());
+  } else {
+    console.warn(`Dock item não encontrado para o app: ${appName}`);
+  }
+}
