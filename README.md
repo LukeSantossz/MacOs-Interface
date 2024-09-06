@@ -1,35 +1,70 @@
-# MacOs Interface - HTML, CSS e JavaScript
+# MacOS Interface Clone
 
-## Visão Geral
-
-Este projeto tem como objetivo simular a interface do sistema operacional macOS utilizando as tecnologias web HTML, CSS e JavaScript. O foco está em replicar a estética e a interatividade do macOS, proporcionando uma experiência de usuário intuitiva e visualmente agradável.
+Este projeto é uma interface de usuário inspirada no MacOS, criada utilizando HTML, CSS e JavaScript. Ele simula a aparência e algumas funcionalidades do sistema operacional MacOS, incluindo uma barra de tarefas, um dock de aplicativos e janelas modais.
 
 ## Funcionalidades
 
-* **Área de trabalho:**
-  * Papel de parede personalizável
-  * Ícones de aplicativos arrastáveis
-  * Menu contextual com opções de personalização
-* **Dock:**
-  * Ícones de aplicativos fixos e dinâmicos
-  * Efeito de zoom ao passar o mouse
-  * Opção de ocultar/mostrar
-* **Janelas:**
-  * Barra de título com botões de controle (fechar, minimizar, maximizar)
-  * Resizing e drag & drop
-  * Efeitos de sombra e transparência
-* **Outras funcionalidades:**
-  * [Liste outras funcionalidades, como notificações, menu de configurações, etc.]
+- **Barra de Tarefas**: Uma barra de tarefas no topo da tela com ícones e menus.
+- **Dock de Aplicativos**: Uma barra de ícones na parte inferior da tela que permite abrir janelas modais para diferentes aplicativos.
+- **Janelas Modais**: Janelas que podem ser abertas, movidas, maximizadas, minimizadas e fechadas.
+- **Papel de Parede Dinâmico**: O papel de parede muda automaticamente com base na hora do dia, e pode ser alternado manualmente.
+- **Atualização de Tempo**: Exibe a data e hora atual na barra de tarefas, atualizando a cada segundo.
 
 ## Tecnologias Utilizadas
 
-* **HTML:** Estrutura básica da página e dos elementos da interface.
-* **CSS:** Estilização da interface, criando a aparência visual do macOS.
-* **JavaScript:** Interatividade da interface, manipulação de eventos e animações.
-* **[IDE utilizada]**: Ambiente de desenvolvimento utilizado para criar e editar o código.
+- **HTML**: Estrutura básica do projeto.
+- **CSS**: Estilização da interface, incluindo fontes personalizadas e animações.
+- **JavaScript**: Funcionalidades interativas, como eventos de clique, arrastar e soltar, e manipulação do DOM.
 
-## Como Usar
+## Como Executar o Projeto
 
-Clone este repositório:
-```bash 
-git clone https://github.com/LukeSantossz/MacOs-Interface
+1. **Clone o Repositório**
+   ```bash
+   git clone https://github.com/seu-usuario/macOS-interface-clone.git
+   cd macOS-interface-clone
+   ```
+
+2. **Abra o Arquivo HTML**
+   Abra o arquivo `index.html` no seu navegador preferido.
+
+## Estrutura do Projeto
+
+- **index.html**: Contém a estrutura HTML da interface.
+- **css/styles.css**: Contém os estilos CSS para a interface.
+- **js/script.js**: Contém o código JavaScript para a funcionalidade interativa.
+
+## Detalhes de Implementação
+
+### HTML
+
+O arquivo `index.html` define a estrutura da interface, incluindo a barra de tarefas, o dock de aplicativos e os contêineres para janelas modais.
+
+### CSS
+
+O arquivo `styles.css` define os estilos para a interface, incluindo a barra de tarefas, o dock de aplicativos, e as janelas modais. Ele também inclui fontes personalizadas e animações para transições suaves.
+
+### JavaScript
+
+O arquivo `script.js` adiciona interatividade à interface. Ele inclui funções para abrir e fechar janelas modais, atualizar o papel de parede com base na hora do dia, e exibir a data e hora atual na barra de tarefas.
+
+## Google Gemini
+
+Este projeto foi inspirado e desenvolvido com a ajuda do Google Gemini em parceria com a Alura.
+
+## Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+**Autor**: Lukesz
+
+**Contato**: lucassg2015@gmail.com
+
+---
+
+Espero que este projeto seja útil e divertido para você! Se tiver alguma dúvida ou sugestão, não hesite em entrar em contato.
