@@ -306,12 +306,12 @@ let manualOverrideTimer = null; // Timer para restaurar o papel de parede origin
 // Função para obter o caminho do papel de parede baseado na hora do dia
 function getTimeBasedWallpaper() {
   const hour = new Date().getHours();
-  return (hour >= 6 && hour < 18) ? '../Pictures/MacOsWallpaperDay.jpg' : '../Pictures/MacOswallpaper.jpg';
+  return (hour >= 6 && hour < 18) ? '../docs/Pictures/MacOsWallpaperDay.jpg' : '../docs/Pictures/MacOswallpaper.jpg';
 }
 
 // Função para atualizar o papel de parede
 function updateWallpaper(manual = false) {
-  const wallpaperPath = manual ? (isDaytime ? '../Pictures/MacOswallpaper.jpg' : '../Pictures/MacOsWallpaperDay.jpg') : getTimeBasedWallpaper();
+  const wallpaperPath = manual ? (isDaytime ? '../docs/Pictures/MacOswallpaper.jpg' : '../docs/Pictures/MacOsWallpaperDay.jpg') : getTimeBasedWallpaper();
 
   const backgroundContainer = document.querySelector('.background-container');
   

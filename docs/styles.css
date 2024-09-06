@@ -36,7 +36,7 @@ body {
   background-repeat: no-repeat;
   z-index: -1;
   transition: none; /* Remove a transição do papel de parede */
-  background-image: url('../Pictures/MacOswallpaper.jpg'); /* Verifique o caminho da imagem */
+  background-image: url('../docs/Pictures/MacOswallpaper.jpg'); /* Verifique o caminho da imagem */
   overflow: hidden; /* Impede que elementos filhos ultrapassem o container */
 }
 
