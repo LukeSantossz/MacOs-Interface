@@ -1,3 +1,5 @@
+![MacOS Interface Clone Screenshot](./Pictures/image.png)
+
 # MacOS Interface Clone
 
 Este projeto é uma interface de usuário inspirada no MacOS, criada utilizando HTML, CSS e JavaScript. Ele simula a aparência e algumas funcionalidades do sistema operacional MacOS, incluindo uma barra de tarefas, um dock de aplicativos e janelas modais.
